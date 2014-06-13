@@ -1,0 +1,325 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
+<link href="favicon.ico" rel="shortcut icon">
+    
+<!-- bootstrap magic -->
+<!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"> -->
+
+<!-- jquery -->
+<!-- <script type="text/javascript" src="assets/js/jquery-1.11.0.min.js"></script> -->
+
+<!-- fonts -->
+<link href='http://fonts.googleapis.com/css?family=Exo+2:400,200,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+<!-- theme custom -->
+<!-- <link rel="stylesheet" type="text/css" href="assets/css/styles.css"> -->
+<!-- link rel="stylesheet/less" type="text/css" href="assets/less/styles.less" />
+
+<script type="text/javascript">
+	less = {
+		env: "development", // or "production"
+		async: false,       // load imports async
+		fileAsync: false,   // load imports async when in a page under
+							// a file protocol
+		poll: 1000,         // when in watch mode, time in ms between polls
+		functions: {},      // user functions, keyed by name
+		dumpLineNumbers: "comments" // or "mediaQuery" or "all"
+	};
+</script>
+<script type="text/javascript" src="assets/js/less-1.6.1.min.js"></script -->				
+
+<!-- HEADER SECTION -->
+<div class="header-wrap" id="top">
+<div class="container head-container">
+      <!--
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6 logo-container text-center">
+			<div class="logo"></div>
+		</div>
+	</div>
+      -->
+	<div class="row title">
+		<div class="col-md-offset-3 col-md-6 text-center">
+			<h1>EcoHack EPI Visualization Tools</h1>
+		</div>
+	</div><!--
+	<div class="row action">
+		<div class="col-md-offset-3 col-md-6 text-center">
+			<a href="#services" class="btn btn-lg btn-primary">Our Services</a>
+		</div>
+	</div>	-->		
+</div>
+</div>
+
+<!-- SERVICES SECTION -->
+      <!--
+<div class="services-wrap" id="services">	
+<div class="container services-container">
+	<div class="row">
+		<div class="col-md-12 heading">
+			<h2><span>Our</span> Services</h2>
+			<p>We provide complete designing and marketing solutions for enterprises, startups or individuals</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 service">
+			<img src="assets/images/icons/webdesign.png" class="img-responsive img-center" alt="web design">
+			<h3>Web Design</h3>	
+			<p>Functional and Minimalistic websites that run on any device known to man</p>
+		</div>
+		<div class="col-md-3 service">
+			<img src="assets/images/icons/branding.png" class="img-responsive img-center" alt="branding">				
+			<h3>Branding Solutions</h3>	
+			<p>We make sure you stand out from the crowd and people remember who you are and what you stand for</p>
+		</div>
+		<div class="col-md-3 service">
+			<img src="assets/images/icons/servertech.png" class="img-responsive img-center" alt="server technologies">
+			<h3>Server Technologies</h3>	
+			<p>Having a right answer is great but also important is how fast you deliver it when requested</p>
+		</div>
+		<div class="col-md-3 service">
+			<img src="assets/images/icons/com.png" class="img-responsive img-center" alt="advertising">
+			<h3>Advertising</h3>	
+			<p>You've got a great brand, a functional website and great server infrastructure, now you only need to put yourself out there</p>
+		</div>			
+	</div>
+	<div class="row">
+		<div class="col-md-12 portfolio-link text-center">
+			<a href="#work" class="btn btn-lg btn-primary">View Recent Work</a>
+		</div>
+	</div>
+</div>
+</div>
+-->
+
+<!-- ABOUT US SECTION -->
+<div class="aboutus-wrap" id="aboutus">
+<div class="container aboutus-container">
+	<div class="row">
+		<div class="col-md-12 heading">
+			<h2>The Goal</h2>
+			<p>Our main ability is to <em>focus</em> on the task at hand and come up with the best solution. We are a small but experienced team of professionals and we pride ourselfs with great communication skills and artistic talent. We consider coding to be an art just like designing.</p>
+
+			<p>Meet our team below</p>
+		</div>
+	</div>
+
+
+</div>
+</div>
+      
+      
+<!-- PROJECTS SECTION -->
+<div class="portfolio-wrap" id="work">
+<div class="container portfolio-container">
+	<div class="row">
+		<div class="col-md-12 heading">
+			<h2>The PROJECTS</h2>
+			<p>Any text here?</p>
+		</div>
+	</div>
+      <!--
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<img src="assets/images/portfolio-artwork.png" class="img-responsive img-center" alt="">
+		</div>
+	</div>-->
+	<div class="row items portfolio-list">
+
+		<div class="col-md-4 item">
+			<a href="#">
+				<%= image_tag 'country_comparison_preview.png', class: "img-responsice" %>
+				<span class="overlay"><span class="overlay-icon fa fa-plus"><%= image_tag "icons/portfolio-link.png", alt: "open link" %>
+			</a>
+			<h3>Country Comparator (fixme)</h3>
+		</div>
+		<div class="col-md-4 item">
+			<a href="world_pollution.html">
+				<%= image_tag "pollution_over_time_preview.png", class: "img-responsive" %>
+				<span class="overlay"><span class="overlay-icon fa fa-plus"><%= image_tag "icons/portfolio-link.png", alt: "open link" %>
+			</a>
+			<h3>Pollution Over Time</h3>					
+		</div>
+		<div class="col-md-4 item">
+			<a href="cemissions.html">
+				<%= image_tag "work.jpg", class: "img-responsive" %>
+				<span class="overlay"><span class="overlay-icon fa fa-plus"><%= image_tag "icons/portfolio-link.png", alt: "open link" %>
+			</a>
+			<h3>Carbon Emissions</h3>					
+		</div>
+<!--
+		<div class="col-md-4 item">
+			<a href="#">
+				<img src="assets/images/work.jpg" class="img-responsive" alt="">
+				<span class="overlay"><span class="overlay-icon fa fa-plus"><img src="assets/images/icons/portfolio-link.png" alt="open link"></span></span>
+			</a>
+			<h3>Yellow Submarine</h3>					
+		</div>
+		<div class="col-md-4 item">
+			<a href="#">
+				<img src="assets/images/work.jpg" class="img-responsive" alt="">
+				<span class="overlay"><span class="overlay-icon fa fa-plus"><img src="assets/images/icons/portfolio-link.png" alt="open link"></span></span>
+			</a>
+			<h3>Beijing</h3>					
+		</div>
+		<div class="col-md-4 item">
+			<a href="#">
+				<img src="assets/images/work.jpg" class="img-responsive" alt="">
+				<span class="overlay"><span class="overlay-icon fa fa-plus"><img src="assets/images/icons/portfolio-link.png" alt="open link"></span></span>
+			</a>
+			<h3>China</h3>					
+		</div>
+
+		<div class="col-md-4 item">
+			<a href="#">
+				<img src="assets/images/work.jpg" class="img-responsive" alt="">
+				<span class="overlay"><span class="overlay-icon fa fa-plus"><img src="assets/images/icons/portfolio-link.png" alt="open link"></span></span>
+			</a>
+			<h3>Selling</h3>					
+		</div>
+		<div class="col-md-4 item">
+			<a href="#">
+				<img src="assets/images/work.jpg" class="img-responsive" alt="">
+				<span class="overlay"><span class="overlay-icon fa fa-plus"><img src="assets/images/icons/portfolio-link.png" alt="open link"></span></span>
+			</a>
+			<h3>Vitra Chairs</h3>					
+		</div>
+		<div class="col-md-4 item">
+			<a href="#">
+				<img src="assets/images/work.jpg" class="img-responsive" alt="">
+				<span class="overlay"><span class="overlay-icon fa fa-plus"><img src="assets/images/icons/portfolio-link.png" alt="open link"></span></span>
+			</a>
+			<h3>Water Wave Exercise</h3>					
+		</div>
+-->
+	</div>
+
+	<div class="row">
+		<div class="col-md-12 aboutus-link text-center">
+			<a href="#aboutus" class="btn btn-lg btn-primary">About Us</a>
+		</div>
+	</div>			
+</div>
+</div>
+
+<!-- TEAM SECTION -->
+<div class="aboutus-wrap" id="aboutus">
+<div class="container aboutus-container">
+	<div class="row">
+		<div class="col-md-12 heading">
+			<h2>The People</h2>
+
+			<!--<p>Meet our team below</p>-->
+		</div>
+	</div>
+
+	<div class="row team">
+		<div class="col-md-4 member">
+			<%= image_tag "face.jpg", class:"img-responsive" %>
+			<h3>Cole Jonnes</h3>
+			<p>Coder</p>
+
+			<div class="social">
+				<a href="#"><%= image_tag "icons/behance.png" %></a>
+				<a href="#"><%= image_tag "icons/linkedin.png" %></a>
+				<a href="#"><%= image_tag "icons/dribbble.png" %></a>				
+			</div>
+		</div>
+		<div class="col-md-4 member">
+			<%= image_tag "face.jpg", class: "img-responsive" %>
+			<h3>Mark Watts</h3>
+			<p>Designer</p>
+
+			<div class="social">
+				<a href="#"><%= image_tag "icons/plus.png" %></a>
+				<a href="#"><%= image_tag "icons/linkedin.png" %></a>			
+			</div>
+		</div>
+		<div class="col-md-4 member">
+			<%= image_tag "face.jpg", class: "img-responsive" %>
+			<h3>Demian Parson</h3>
+			<p>Project Manager</p>
+
+			<div class="social">
+				<a href="#"><%= image_tag "icons/twiiter.png" %></a>
+				<a href="#"><%= image_tag "icons/linkedin.png" %></a>
+				<a href="#"><%= image_tag "icons/dribbble.png" %></a>					
+			</div>
+		</div>						
+	</div>	
+
+	<div class="row">
+		<div class="col-md-12 aboutus-link text-center">
+			<a href="#contact" class="btn btn-lg btn-primary">Contact Us</a>
+		</div>
+	</div>		
+</div>
+</div>
+
+<!-- CONTACT SECTION -->
+<div class="contact-wrap" id="contact">
+<div id="map"></div>
+<div class="contact-container">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 heading">
+				<h2>Thank You</h2>
+	<div class="row team">
+		<div class="col-md-4 member">
+			<%= image_tag "face.jpg", class: "img-responsive" %>
+			<h3>EPI</h3>
+
+		</div>
+		<div class="col-md-4 member">
+			<%= image_tag "face.jpg", class: "img-responsive" %>
+			<h3>EcoHack</h3>
+
+		</div>
+          </div>
+                  <!--
+				<p class="phone">(718) 555-5555</p>
+				<p class="email">outpost@moonstationstudios.com</p>
+				<p>4778 38th Street, New York, NY</p>-->
+			</div>
+		</div><!--
+		<div class="row">
+			<div class="col-md-12 text-center social">
+				<a class="icon" href="#"><img src="assets/images/icons/dribbble.png" alt=""></a>
+				<a class="icon" href="#"><img src="assets/images/icons/twiiter.png" alt=""></a>
+				<a class="icon" href="#"><img src="assets/images/icons/plus.png" alt=""></a>
+				<a class="icon" href="#"><img src="assets/images/icons/behance.png" alt=""></a>
+				<a class="icon" href="#"><img src="assets/images/icons/linkedin.png" alt=""></a>
+			</div>
+		</div>	-->	
+		<div class="row">
+			<div class="up">
+				<a href="#top"><%= image_tag "icons/top.png", alt: "go to top" %></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+	<!-- google maps api -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATqBxcpfJ8QPIVPnDwEd0SPVC1Wmyk-4Q&sensor=false"></script>
+
+	<!-- <script type="text/javascript" src="assets/js/jquery.easing.1.3.js"></script>
+ -->
+	<!-- link scroller -->
+<!-- 	<script type="text/javascript" src="assets/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+ -->	<!-- <script src="assets/js/jquery.localscroll-1.2.7-min.js"></script>		 -->
+
+	<!-- bootstrap js -->
+<!-- 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+ -->
+	<!-- our custom scripts -->
+<!-- 	<script type="text/javascript" src="assets/js/custom.js"></script>
+ -->
