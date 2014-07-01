@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'country_list' => 'application#country_list'
   get 'indicator_list' => 'application#indicator_list'
   get 'subindicator_list' => 'application#subindicator_list'
-  get '/foo', :to => redirect('/foo.html')
+  get 'comparison', :to => redirect('/comparison.html')
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
