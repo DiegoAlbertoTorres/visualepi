@@ -23,7 +23,7 @@ var subindicator = "PM25";
 
 // JSON for select Boxes
 //~ d3.json("http://localhost:3000/country_list.json", function(error, json) {  
-d3.json("http://epiapi.herokuapp.com/country_list.json", function(error, json) {  
+d3.json("/country_list.json", function(error, json) {  
     var selecthtml = "";
     var active = 0;
     $.each(json, function(name, iso) {
@@ -53,7 +53,7 @@ d3.json("http://epiapi.herokuapp.com/country_list.json", function(error, json) {
 });
 
 //~ d3.json("http://localhost:3000/indicator_list.json", function(error, json) {
-d3.json("http://epiapi.herokuapp.com/indicator_list.json", function(error, json) {
+d3.json("/indicator_list.json", function(error, json) {
 	var indhtml = "";
 	$.each(json[0], function(id, name){
 		indhtml += "<option value=" + id +">" + name +"</option>"
@@ -70,7 +70,7 @@ d3.json("http://epiapi.herokuapp.com/indicator_list.json", function(error, json)
 });
 
 //~ d3.json("http://localhost:3000/subindicator_list.json", function(error, json) {
-d3.json("http://epiapi.herokuapp.com/subindicator_list.json", function(error, json) {
+d3.json("/subindicator_list.json", function(error, json) {
 	var subindhtml = "";
 	$.each(json[0], function(id, name){
 		subindhtml += "<option value=" + id +">" + name +"</option>"
@@ -113,7 +113,7 @@ function drawRose(key, country) {
 	var chart = roseCharts[key];
 	
 	//~ d3.json("http://localhost:3000/radar_chart.json?years[]=2012&"+url, function(error, json) {
-	d3.json("http://epiapi.herokuapp.com/radar_chart.json?years[]=2012&"+url, function(error, json) {
+	d3.json("/radar_chart.json?years[]=2012&"+url, function(error, json) {
 		var country2 = json[0][0],
 			country = json[0][0].data;
 		
@@ -338,7 +338,7 @@ function drawLine(key, country){
     // JSON for line graph
     //~ console.log(country);
     //~ d3.json("http://localhost:3000/line_graph.json?indicator=" + indicator + "&iso_codes[]=" + country, function(error, json) {
-    d3.json("http://epiapi.herokuapp.com/line_graph.json?indicator=" + indicator + "&iso_codes[]=" + country, function(error, json) {
+    d3.json("/line_graph.json?indicator=" + indicator + "&iso_codes[]=" + country, function(error, json) {
 		var dat = [];
 		
 		if (json === undefined){
@@ -367,7 +367,7 @@ function drawLine(key, country){
 
 function drawSpark(country){
 	//~ d3.json("http://localhost:3000/indicator_trend.json?iso_codes[]=" + country + "&indicators[]=" + subindicator, function(error, json) {
-	d3.json("http://epiapi.herokuapp.com/indicator_trend.json?iso_codes[]=" + country + "&indicators[]=" + subindicator, function(error, json) {
+	d3.json("/indicator_trend.json?iso_codes[]=" + country + "&indicators[]=" + subindicator, function(error, json) {
 		if (! (sparkChart === undefined))
 			sparkChart.destroy();
 		
