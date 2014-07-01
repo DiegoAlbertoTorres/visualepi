@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'indicator_list' => 'application#indicator_list'
   get 'subindicator_list' => 'application#subindicator_list'
   get 'comparison' => 'application#comparison'
+  get '/public', :to => redirect('/public')
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
