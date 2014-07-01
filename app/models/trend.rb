@@ -8,8 +8,6 @@ class Trend < ActiveRecord::Base
 		iso_codes.map do |iso_code|
 			indicators.map do |indicator|
 				country = Trend.find_by(iso: iso_code.upcase)
-				p "here:"
-				p Trend.column_names[4]
 				{
 					"name" => country.country,
 					"indicator_trend" => country.trend(indicator)
