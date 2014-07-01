@@ -27,6 +27,20 @@ class Country < ActiveRecord::Base
     end
   end
 
+  def self.indicator_trend(params)
+    iso_codes = params['iso_codes'] || ISO_CODES
+    indicator_names = params['indicators']
+    iso_codes.map do |iso_code|
+      indicator_names.map do |indicator|
+        country = Country.find_by(iso: iso_code.upcase)
+          {
+            "name" => country.country,
+            "indicator_trend" => country.trend(indicator)
+          }
+      end
+    end
+  end
+
   def indicators(indicator_names = INDICATOR_NAMES)
     indicator_names.map do |indicator|
       {"name" => indicator, "value" => send(indicator), "subindicators" => subindicators(indicator)}
@@ -63,6 +77,14 @@ class Country < ActiveRecord::Base
        {"subindicator" => "CO2GDPd2", "value" => send("CO2GDPd2")},
        {"subindicator" => "ACCESS", "value" => send("ACCESS")},
        {"subindicator" => "CO2KWH", "value" => send("CO2KWH")}]
+    end
+  end
+
+  def trend(indicator)
+    if indicator == "ACCESS"
+      [{"year" => "1990", "value" => send("ACCESS.1990")},
+       {"year" => "2000", "value" => send("ACCESS.2000")},
+       {"year" => "2010", "value" => send("ACCESS.2010")}]
     end
   end
 

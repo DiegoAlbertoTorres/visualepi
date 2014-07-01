@@ -4,7 +4,7 @@
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   Mayor.create(name: 'Emanuel', city: cities.first)8
 
 require 'csv'    
 
@@ -18,7 +18,8 @@ years.each do |year|
   end
 end
 
-csv_text = File.read("./lib/assets/indicators/indicators.csv")
+Trend.delete_all
+csv_text = File.read("./lib/assets/indicators/ACCESS_na.csv")
 csv = CSV.parse(csv_text, :headers => true)
 csv.each do |row|
   Trend.create!(row.to_hash)

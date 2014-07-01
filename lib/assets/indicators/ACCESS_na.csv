@@ -1,0 +1,233 @@
+"code","iso","country","ACCESS.1990","ACCESS.2000","ACCESS.2010"
+4,"AFG","Afghanistan",35,37,41
+8,"ALB","Albania",100,100,100
+12,"DZA","Algeria",94,98,99
+16,"ASM","American Samoa",49,53,56
+20,"AND","Andorra",100,100,100
+24,"AGO","Angola",28,31,35
+660,"AIA","Anguilla",NA,NA,NA
+28,"ATG","Antigua and Barbuda",81,85,88
+32,"ARG","Argentina",81,85,88
+51,"ARM","Armenia",94,98,100
+533,"ABW","Aruba",81,85,88
+36,"AUS","Australia",100,100,100
+40,"AUT","Austria",100,100,100
+31,"AZE","Azerbaijan",93,96,100
+44,"BHS","Bahamas",81,85,88
+48,"BHR","Bahrain",87,91,94
+50,"BGD","Bangladesh",22,32,55
+52,"BRB","Barbados",81,85,88
+112,"BLR","Belarus",100,100,100
+56,"BEL","Belgium",100,100,100
+84,"BLZ","Belize",81,85,88
+204,"BEN","Benin",22,25,28
+60,"BMU","Bermuda",100,100,100
+64,"BTN","Bhutan",66,68,72
+68,"BOL","Bolivia",74,77,80
+70,"BIH","Bosnia and Herzegovina",94,99,100
+72,"BWA","Botswana",37,40,43
+76,"BRA","Brazil",92,97,99
+92,"VGB","British Virgin Islands",NA,NA,NA
+96,"BRN","Brunei Darussalam",66,69,73
+100,"BGR","Bulgaria",100,100,100
+854,"BFA","Burkina Faso",6,7,13
+108,"BDI","Burundi",0,4,5
+116,"KHM","Cambodia",19,17,31
+120,"CMR","Cameroon",29,46,49
+124,"CAN","Canada",100,100,100
+132,"CPV","Cape Verde",58,59,67
+136,"CYM","Cayman Islands",81,85,88
+140,"CAF","Central African Republic",3,6,9
+148,"TCD","Chad",0,2,4
+152,"CHL","Chile",95,98,100
+156,"CHN","China",94,98,100
+170,"COL","Colombia",90,93,97
+174,"COM","Comoros",42,45,48
+178,"COG","Congo",24,21,37
+184,"COK","Cook Islands",NA,NA,NA
+188,"CRI","Costa Rica",93,95,99
+384,"CIV","Cote d'Ivoire",37,51,59
+191,"HRV","Croatia",100,100,100
+192,"CUB","Cuba",94,97,100
+196,"CYP","Cyprus",96,100,100
+203,"CZE","Czech Republic",100,100,100
+180,"COD","Dem. Rep. Congo",6,7,15
+208,"DNK","Denmark",100,100,100
+262,"DJI","Djibouti",43,46,50
+212,"DMA","Dominica",85,88,91
+214,"DOM","Dominican Republic",78,92,98
+218,"ECU","Ecuador",90,93,97
+818,"EGY","Egypt",96,98,100
+222,"SLV","El Salvador",77,88,92
+226,"GNQ","Equatorial Guinea",22,26,29
+232,"ERI","Eritrea",23,32,33
+233,"EST","Estonia",100,100,100
+231,"ETH","Ethiopia",10,13,23
+234,"FRO","Faeroe Islands",100,100,100
+238,"FLK","Falkland Islands",NA,NA,NA
+242,"FJI","Fiji",49,53,56
+246,"FIN","Finland",100,100,100
+250,"FRA","France",100,100,100
+254,"GUF","French Guiana",NA,NA,NA
+258,"PYF","French Polynesia",49,53,56
+266,"GAB","Gabon",73,74,82
+270,"GMB","Gambia",18,34,31
+268,"GEO","Georgia",97,100,100
+276,"DEU","Germany",100,100,100
+288,"GHA","Ghana",31,45,61
+292,"GIB","Gibraltar",NA,NA,NA
+300,"GRC","Greece",100,100,100
+304,"GRL","Greenland",100,100,100
+308,"GRD","Grenada",81,85,88
+312,"GLP","Guadeloupe",NA,NA,NA
+316,"GUM","Guam",49,53,56
+320,"GTM","Guatemala",76,79,82
+324,"GIN","Guinea",14,16,20
+624,"GNB","Guinea-Bissau",51,54,57
+328,"GUY","Guyana",72,75,78
+332,"HTI","Haiti",31,31,34
+336,"VAT","Holy See",NA,NA,NA
+340,"HND","Honduras",75,77,81
+344,"HKG","Hong Kong",100,100,100
+348,"HUN","Hungary",100,100,100
+352,"ISL","Iceland",100,100,100
+356,"IND","India",51,62,75
+360,"IDN","Indonesia",67,88,94
+364,"IRN","Iran",94,98,98
+368,"IRQ","Iraq",92,94,98
+372,"IRL","Ireland",100,100,100
+833,"IMN","Isle of Man",100,100,100
+376,"ISR","Israel",96,100,100
+380,"ITA","Italy",100,100,100
+388,"JAM","Jamaica",70,87,92
+392,"JPN","Japan",100,100,100
+400,"JOR","Jordan",95,100,99
+398,"KAZ","Kazakhstan",94,97,100
+404,"KEN","Kenya",11,15,23
+296,"KIR","Kiribati",49,53,56
+414,"KWT","Kuwait",87,91,94
+417,"KGZ","Kyrgyzstan",97,100,100
+418,"LAO","Laos",52,46,66
+428,"LVA","Latvia",100,100,100
+422,"LBN","Lebanon",93,95,100
+426,"LSO","Lesotho",6,5,17
+430,"LBR","Liberia",0,1,4
+434,"LBY","Libya",97,100,100
+438,"LIE","Liechtenstein",100,100,100
+440,"LTU","Lithuania",100,100,100
+442,"LUX","Luxembourg",100,100,100
+446,"MAC","Macao",NA,NA,NA
+807,"MKD","Macedonia",93,95,99
+450,"MDG","Madagascar",9,11,14
+454,"MWI","Malawi",3,5,9
+458,"MYS","Malaysia",93,96,99
+462,"MDV","Maldives",94,96,100
+466,"MLI","Mali",12,17,17
+470,"MLT","Malta",100,100,100
+584,"MHL","Marshall Islands",49,53,56
+474,"MTQ","Martinique",NA,NA,NA
+478,"MRT","Mauritania",12,15,18
+480,"MUS","Mauritius",97,99,100
+175,"MYT","Mayotte",NA,NA,NA
+484,"MEX","Mexico",95,98,99
+583,"FSM","Micronesia",NA,NA,NA
+498,"MDA","Moldova",92,95,99
+492,"MCO","Monaco",100,100,100
+496,"MNG","Mongolia",80,83,86
+499,"MNE","Montenegro",100,100,100
+500,"MSR","Montserrat",NA,NA,NA
+504,"MAR","Morocco",49,71,99
+508,"MOZ","Mozambique",6,7,15
+104,"MMR","Myanmar",43,47,49
+516,"NAM","Namibia",26,37,44
+520,"NRU","Nauru",NA,NA,NA
+524,"NPL","Nepal",70,73,76
+528,"NLD","Netherlands",100,100,100
+530,"ANT","Netherlands Antilles",NA,NA,NA
+540,"NCL","New Caledonia",49,53,56
+554,"NZL","New Zealand",100,100,100
+558,"NIC","Nicaragua",72,73,74
+562,"NER","Niger",6,7,9
+566,"NGA","Nigeria",42,45,48
+570,"NIU","Niue",NA,NA,NA
+574,"NFK","Norfolk Island",NA,NA,NA
+408,"PRK","North Korea",20,22,26
+580,"MNP","Northern Mariana Islands",NA,NA,NA
+578,"NOR","Norway",100,100,100
+512,"OMN","Oman",87,91,94
+586,"PAK","Pakistan",60,80,91
+585,"PLW","Palau",49,53,56
+591,"PAN","Panama",81,85,88
+598,"PNG","Papua New Guinea",8,11,15
+600,"PRY","Paraguay",90,92,97
+604,"PER","Peru",69,72,85
+608,"PHL","Philippines",65,71,83
+612,"PCN","Pitcairn",NA,NA,NA
+616,"POL","Poland",100,100,100
+620,"PRT","Portugal",100,100,100
+630,"PRI","Puerto Rico",81,85,88
+634,"QAT","Qatar",87,91,94
+638,"REU","Reunion",NA,NA,NA
+642,"ROU","Romania",100,100,100
+643,"RUS","Russia",100,100,100
+646,"RWA","Rwanda",2,6,11
+654,"SHN","Saint Helena",NA,NA,NA
+659,"KNA","Saint Kitts and Nevis",81,85,88
+662,"LCA","Saint Lucia",81,85,88
+666,"SPM","Saint Pierre and Miquelon",NA,NA,NA
+670,"VCT","Saint Vincent and the Grenadines",67,70,73
+882,"WSM","Samoa",80,89,100
+674,"SMR","San Marino",100,100,100
+678,"STP","Sao Tome and Principe",50,53,57
+682,"SAU","Saudi Arabia",87,91,94
+686,"SEN","Senegal",26,37,57
+688,"SRB","Serbia",100,100,100
+690,"SYC","Seychelles",22,26,29
+694,"SLE","Sierra Leone",6,9,12
+702,"SGP","Singapore",66,69,73
+703,"SVK","Slovakia",100,100,100
+705,"SVN","Slovenia",100,100,100
+90,"SLB","Solomon Islands",13,16,19
+706,"SOM","Somalia",22,26,29
+710,"ZAF","South Africa",65,66,83
+410,"KOR","South Korea",86,90,93
+724,"ESP","Spain",100,100,100
+144,"LKA","Sri Lanka",78,81,85
+275,"PSE","State of Palestine",NA,NA,NA
+736,"SDN","Sudan",23,25,29
+740,"SUR","Suriname",97,100,100
+744,"SJM","Svalbard and Jan Mayen Islands",NA,NA,NA
+748,"SWZ","Swaziland",29,32,35
+752,"SWE","Sweden",100,100,100
+756,"CHE","Switzerland",100,100,100
+760,"SYR","Syria",85,87,93
+999,"TWN","Taiwan",100,100,100
+762,"TJK","Tajikistan",95,99,100
+834,"TZA","Tanzania",7,9,15
+764,"THA","Thailand",93,96,100
+626,"TLS","Timor-Leste",32,34,38
+768,"TGO","Togo",10,17,28
+772,"TKL","Tokelau",NA,NA,NA
+776,"TON","Tonga",80,86,92
+780,"TTO","Trinidad and Tobago",93,95,99
+788,"TUN","Tunisia",93,95,100
+792,"TUR","Turkey",100,100,100
+795,"TKM","Turkmenistan",95,100,100
+796,"TCA","Turks and Caicos Islands",81,85,88
+798,"TUV","Tuvalu",35,37,41
+800,"UGA","Uganda",7,9,15
+804,"UKR","Ukraine",93,96,100
+784,"ARE","United Arab Emirates",87,91,94
+826,"GBR","United Kingdom",100,100,100
+840,"USA","United States of America",100,100,100
+850,"VIR","United States Virgin Islands",81,85,88
+858,"URY","Uruguay",92,96,99
+860,"UZB","Uzbekistan",97,100,100
+548,"VUT","Vanuatu",18,19,24
+862,"VEN","Venezuela",99,100,100
+704,"VNM","Viet Nam",88,89,96
+876,"WLF","Wallis and Futuna Islands",NA,NA,NA
+732,"ESH","Western Sahara",NA,NA,NA
+887,"YEM","Yemen",38,41,45
+894,"ZMB","Zambia",13,17,19
+716,"ZWE","Zimbabwe",28,34,37

@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   root 'application#index'
   get 'visual' => 'application#radar_chart'
   get 'radar_chart' => 'application#radar_chart'
+  get 'indicator_trend' => 'application#indicator_trend'
   get 'line_graph' => 'application#line_graph'
   get 'iso_code_list' => 'application#iso_code_list'
   get 'country_list' => 'application#country_list'
+  get 'indicator_list' => 'application#indicator_list'
+  get 'subindicator_list' => 'application#subindicator_list'
   get 'comparison' => 'application#comparison'
 
   # Example of regular route:

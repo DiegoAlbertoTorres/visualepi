@@ -90,6 +90,12 @@ class Country < ActiveRecord::Base
         }
     end
   end
+  
+  def self.indicator_list
+	[{"EH_HealthImpacts"=>"Health Impacts", "EH_AirQuality"=>"Air Quality", "EH_WaterSanitation"=>"Water and Sanitation", 
+	"EV_Agriculture"=>"Agriculture", "EV_Forests"=>"Forests", "EV_Fisheries"=>"Fisheries", 
+	"EV_BiodiversityHabitat"=>"Biodiversity and Habitat", "EV_ClimateEnergy"=>"Climate and Energy"}]
+  end
 
   def self.iso_code_list
     Country.pluck(:iso, :country).each_with_object({}){|pair, hash| hash[pair[0]]=pair[1]}

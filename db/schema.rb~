@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(version: 20140510185155) do
     t.string   "EH"
     t.string   "EV"
     t.string   "EPI"
+    t.string   "ACCESS.1990"
+    t.string   "ACCESS.2000"
+    t.string   "ACCESS.2010"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

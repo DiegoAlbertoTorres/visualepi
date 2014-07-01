@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def indicator_trend
+    respond_to do |f|
+      f.json {render json: Country.indicator_trend(indicator_trend_params).to_json.html_safe }
+    end
+  end
+
   def line_graph
     respond_to do |f|
       f.json {render json: Country.line_graph(line_graph_params).to_json.html_safe }
@@ -27,9 +33,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def comparison
+  end
+
   private
     def radar_chart_params
       params.permit("iso_codes" => [], "indicators" => [], "years" => [])
+    end
+ 
+    def indicator_trend_params
+      params.permit("iso_codes" => [], "indicators" => [])
     end
 
     def line_graph_params

@@ -1,0 +1,30 @@
+class Trend < ActiveRecord::Base
+
+  INDICATOR_NAMES = ["EH_HealthImpacts", "EH_AirQuality", "EH_WaterSanitation","EV_WaterResources", "EV_Agriculture", "EV_Forests", "EV_Fisheries", "EV_BiodiversityHabitat", "EV_ClimateEnergy"]
+  ISO_CODES = Trend.pluck(:iso)
+  YEARS = (2002..2012).to_a
+
+  def self.countries_from_params(params)
+    params['countries'] || []
+  end
+
+  def self.indicator_trend(params)
+    iso_codes = params['iso_codes'] || ISO_CODES
+    indicator_name = params['indicator']
+    iso_codes.map do |iso_code|
+      country = Country.find_by(year: NULL, iso: iso_code.upcase)
+        {
+          "name" => country.country,
+          "access1990" => country.send("ACCESS.1990")
+        }
+    end
+  end
+
+  def self.iso_code_list
+    Trend.pluck(:iso, :country).each_with_object({}){|pair, hash| hash[pair[0]]=pair[1]}
+  end
+
+  def self.country_list
+    Trend.pluck(:country, :iso).each_with_object({}){|pair, hash| hash[pair[0]]=pair[1]}
+  end
+end
