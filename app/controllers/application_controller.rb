@@ -44,6 +44,10 @@ class ApplicationController < ActionController::Base
       f.json {render json: Trend.subindicator_list.to_json.html_safe }
     end
   end
+  
+  def comparison
+	render :file => 'public/comparison.html'
+  end
 
   private
     def radar_chart_params
