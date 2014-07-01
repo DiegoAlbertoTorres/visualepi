@@ -45,9 +45,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def comparison
-  end
-
   private
     def radar_chart_params
       params.permit("iso_codes" => [], "indicators" => [], "years" => [])
