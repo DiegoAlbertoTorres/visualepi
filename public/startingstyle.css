@@ -78,17 +78,3 @@ h1{
 	width: 33%;
 	float: left;
 }
-/* This should not be necessary, I do not know why Highcharts refuses
- * to accept simply setting spark.title.align: left; */
-.highcharts-title{
-	white-space: normal !important;
-	width: 150px;
-}
-.highcharts-subtitle{
-	white-space: normal !important;
-	width: 60px;
-}
-.highcharts-subtitle{
-	white-space: normal !important;
-	width: 60px;
-}

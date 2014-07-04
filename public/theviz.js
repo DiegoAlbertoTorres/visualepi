@@ -60,7 +60,6 @@ d3.json("/indicator_list.json", function(error, json) {
 	
 	$("#ind").change(function(){
 		indicator = $(this)[0].value;
-		
 		initLine();
 	});
 });
@@ -77,6 +76,8 @@ d3.json("/subindicator_list.json", function(error, json) {
 	
 	$("#subind").change(function(){
 		subindicator = subindicators[$(this)[0].value];
+		// This is the only way to handle the superscript using SVG subtitle and tooltip.
+		if (subindicator.shortunits == "mg/m^3") subindicator.shortunits = "mg/m\xB3";
 		drawSpark(sparkCountry);
 	});
 });
@@ -379,7 +380,7 @@ function drawSpark(country){
 		$.map(data, function(obj, i) {
 			var mark = false;
 			if (i == 0 || i == data.length-1) mark = true;
-			var val = Math.round(parseFloat(obj.value)*100)/100;
+			var val = parseFloat(obj.value);
 			if (isNaN(val)) val = null;
 			ser.push({x: parseInt(obj.year), y: val, marker: {enabled: mark}});
 		});
@@ -406,7 +407,7 @@ function drawSpark(country){
 		var spark = emptySpark(ser.length);
 		spark.plotOptions.line.dataLabels.style.color = col;
 		spark.xAxis.labels.style.color = col;
-		spark.title.text = subindicator.name;
+		spark.xAxis.labels.step = ser[ser.length-1].x - ser[0].x;
 		spark.subtitle.text = subindicator.units;
 		if (subindicator.units.length > 13) spark.subtitle.text = subindicator.shortunits;
 		sparkChart = new Highcharts.Chart(spark);
@@ -417,38 +418,70 @@ function drawSpark(country){
 	});
 }
 
-function emptySpark(len){
+function emptySpark(){
 	var options = {
 		exporting: {
 			buttons: {
 				contextButton: {
-					enabled: false,
-					align: 'left'
+					enabled: true,
+					align: 'left',
+					menuItems: [{
+                    text: 'Print',
+						onclick: function() {
+							this.print();
+						}
+					},{
+						text: 'Save as PNG',
+						onclick: function() {
+							var svg = this.getSVG(),
+								width = parseInt(svg.match(/width="([0-9]+)"/)[1]),
+								height = parseInt(svg.match(/height="([0-9]+)"/)[1]),
+								canvas = document.createElement('canvas');
+								
+							canvas.setAttribute('width', width);
+							canvas.setAttribute('height', height);
+							
+							if (canvas.getContext && canvas.getContext('2d')) {
+								canvg(canvas, svg);
+								var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+								document.write('<img src="'+image+'"/>');
+							}
+							else {
+								alert ("Your browser doesn't support this feature, please use a modern browser");
+							}
+						},
+						separator: false
+					}]
 				}
 			}
 		},
 		chart: {
 			type: 'line',
-			renderTo: 'sparkChart'
+			renderTo: 'sparkChart',
+			marginTop: 60,
+			marginRight: 20,
+			marginBottom: 20,
+			marginLeft: 20
 		},
 		title:{
-			align: 'left',
+			align: 'right',
 			verticalAlign: 'top',
-			useHTML: true,
+			text: 'Raw Data Trend',
+			useHTML: false,
 			style: {
-				"fontSize": "10px"
+				'fontSize': '13px',
+				'fontWeight': 'bold',
 			},
-			floating: true
 		},
 		subtitle:{
 			align: 'right',
-			x: 10,
-			y: 8,
-			useHTML: true,
+			y: 25,
+			useHTML: false,
 			style: {
-				"fontSize": "10px"
+				'fontSize': '11px',
+				'fontStyle': 'italic',
+				'fontWeight': 'normal'
 			},
-			floating: false
 		},
 		xAxis: {
 			lineWidth: 0,
@@ -457,7 +490,6 @@ function emptySpark(len){
 			gridLineWidth: 0,
 			tickInterval: 1,
 			labels:{
-				step: len-1,
 				staggerLines: 1,
 				style: {
 					fontWeight: 'bold'
@@ -482,8 +514,16 @@ function emptySpark(len){
 			enabled: false
 		},
 		tooltip: {
+            useHTML: false,
 			formatter: function() {
-				return this.series.name + '<br> <b>' + this.x + ':</b> ' + (this.point.y || "0.00");
+				var y = this.point.y;
+				if (subindicator.id == "CHMORT")
+					y = parseFloat(parseFloat(y).toPrecision(2));
+				else
+					y = parseFloat(Math.round(y * 100) / 100).toFixed(2);
+							
+				units = subindicator.shortunits;
+				return this.series.name + '<br> <b>' + this.x + ':</b> ' + y + " " + units;
 			}
 		},
 		plotOptions: {
@@ -497,10 +537,16 @@ function emptySpark(len){
 					verticalAlign: 'bottom',
 					y: -5,
 					formatter: function() {
+						var y = this.point.y;
+						if (subindicator.id == "CHMORT")
+							y = parseFloat(parseFloat(y).toPrecision(2));
+						else
+							y = parseFloat(Math.round(y * 100) / 100).toFixed(2);
+							
 						var data = sparkChart.series[0].data;
-						if(this.point.x == data[0].x || this.point.x == data[data.length-1].x) // Only label first and last 
-							// This is an ugly hack to have a double white space between year and data
-							return this.point.y || '0.00';
+						// Only label first and last 
+						if(this.point.x == data[0].x || this.point.x == data[data.length-1].x)
+							return y;
 						return ''
 					},
 					style: {

@@ -75,7 +75,7 @@ class Trend < ActiveRecord::Base
 	{"name"=>"Access to Sanitation", "id"=>"ACSAT", "units"=> "Percentage", "shortunits"=>"%"},
 	{"name"=>"Wastewater Treatment", "id"=>"WASTECXN", "units"=> "Percentage", "shortunits"=>"%"},
 	{"name"=>"Agricultural Subsidies", "id"=>"AGSUB", "units"=> "Percentage", "shortunits"=>"%"},
-	{"name"=>"Pesticide Regulation", "id"=>"POPS", "units"=> "(Out of 25 points)", "shortunits"=>""},
+	{"name"=>"Pesticide Regulation", "id"=>"POPS", "units"=> "(Out of 25 points)", "shortunits"=>"(Out of 25)"},
 	{"name"=>"Change in Forest Cover", "id"=>"FORCH", "units"=> "Percentage", "shortunits"=>"%"},
 	{"name"=>"Coastal Shelf Fishing Pressure", "id"=>"TCEEZ", "units"=> "Proportion", "shortunits"=>""},
 	{"name"=>"Fish Stocks", "id"=>"FSOC", "units"=> "Proportion", "shortunits"=>""},
