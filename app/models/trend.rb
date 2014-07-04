@@ -28,7 +28,7 @@ class Trend < ActiveRecord::Base
 			range = *(86..88)
 		elsif indicator == "CHMORT"
 			range = *(89..111)
-		elsif indicator == "CO2GDP"
+		elsif indicator == "CO2GDPd1"
 			range = *(112..132)
 		elsif indicator == "CO2KWH"
 			range = *(133..153)
@@ -73,7 +73,7 @@ class Trend < ActiveRecord::Base
 	{"name"=>"Air Pollution - PM2.5 Exceedance", "id"=>"PM25EXBL", "units"=> "Proportion", "shortunits"=>""},
 	{"name"=>"Access to Drinking Water", "id"=>"WATSUP", "units"=> "Percentage", "shortunits"=>"%"},
 	{"name"=>"Access to Sanitation", "id"=>"ACSAT", "units"=> "Percentage", "shortunits"=>"%"},
-	{"name"=>"Wastewater Treatment", "id"=>"WASTECXN", "units"=> "Percentage (treatment level x connection rate)", "shortunits"=>"%"},
+	{"name"=>"Wastewater Treatment", "id"=>"WASTECXN", "units"=> "Percentage", "shortunits"=>"%"},
 	{"name"=>"Agricultural Subsidies", "id"=>"AGSUB", "units"=> "Percentage", "shortunits"=>"%"},
 	{"name"=>"Pesticide Regulation", "id"=>"POPS", "units"=> "(Out of 25 points)", "shortunits"=>""},
 	{"name"=>"Change in Forest Cover", "id"=>"FORCH", "units"=> "Percentage", "shortunits"=>"%"},

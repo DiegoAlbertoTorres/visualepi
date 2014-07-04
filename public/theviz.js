@@ -69,6 +69,7 @@ d3.json("/subindicator_list.json", function(error, json) {
 	var subindhtml = "";
 	var subindicators = json;
 	$.each(subindicators, function(i, obj){
+		if (obj.id == "CO2GDPd2") return;
 		subindhtml += "<option value=" + i +">" + obj.name +"</option>"
 	});
 	$(".subind").append("<select id='subind'>" + subindhtml + "</select>");
@@ -407,7 +408,7 @@ function drawSpark(country){
 		spark.xAxis.labels.style.color = col;
 		spark.title.text = subindicator.name;
 		spark.subtitle.text = subindicator.units;
-		console.log(subindicator.units.length);
+		if (subindicator.units.length > 13) spark.subtitle.text = subindicator.shortunits;
 		sparkChart = new Highcharts.Chart(spark);
 		sparkChart.addSeries({name: country, data: ser, marker: {enabled: false}, color: col}, true);
 		
@@ -441,7 +442,7 @@ function emptySpark(len){
 		},
 		subtitle:{
 			align: 'right',
-			x: 12,
+			x: 10,
 			y: 8,
 			useHTML: true,
 			style: {
@@ -482,7 +483,7 @@ function emptySpark(len){
 		},
 		tooltip: {
 			formatter: function() {
-				return this.series.name + '<br> <b>' + this.x + ':</b> ' + this.point.y;
+				return this.series.name + '<br> <b>' + this.x + ':</b> ' + (this.point.y || "0.00");
 			}
 		},
 		plotOptions: {
