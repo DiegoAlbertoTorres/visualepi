@@ -19,10 +19,9 @@ var lineChart;
 var sparkChart;
 var sparkCountry ="CHN";
 var indicator = "EH_HealthImpacts";
-var subindicator = "PM25";
+var subindicator = {name: "Child Mortality", id: "CHMORT", units: "Probability", shortunits: ""};
 
-// JSON for select Boxes
-//~ d3.json("http://localhost:3000/country_list.json", function(error, json) {  
+// JSON for select Boxes 
 d3.json("/country_list.json", function(error, json) {  
     var selecthtml = "";
     var active = 0;
@@ -37,7 +36,6 @@ d3.json("/country_list.json", function(error, json) {
     
     // Event for checkbox change
     $(".clist").change(function(){
-		//~ console.log($(this)[0]); 
 		id = $(this)[0].id[1];
 		country = $(this)[0].value;
 		countryselection[id] = country;
@@ -52,14 +50,12 @@ d3.json("/country_list.json", function(error, json) {
     drawSpark(sparkCountry);
 });
 
-//~ d3.json("http://localhost:3000/indicator_list.json", function(error, json) {
 d3.json("/indicator_list.json", function(error, json) {
 	var indhtml = "";
 	$.each(json[0], function(id, name){
 		indhtml += "<option value=" + id +">" + name +"</option>"
 	});
 	$(".ind").append("<select id='ind'>" + indhtml + "</select>");
-	//~ console.log($("#ind option[value=EH_HealthImpacts"));
 	$(".ind option[value='EH_HealthImpacts']").prop('selected', true);
 	
 	$("#ind").change(function(){
@@ -69,18 +65,17 @@ d3.json("/indicator_list.json", function(error, json) {
 	});
 });
 
-//~ d3.json("http://localhost:3000/subindicator_list.json", function(error, json) {
 d3.json("/subindicator_list.json", function(error, json) {
 	var subindhtml = "";
-	$.each(json[0], function(id, name){
-		subindhtml += "<option value=" + id +">" + name +"</option>"
+	var subindicators = json;
+	$.each(subindicators, function(i, obj){
+		subindhtml += "<option value=" + i +">" + obj.name +"</option>"
 	});
 	$(".subind").append("<select id='subind'>" + subindhtml + "</select>");
-	//~ console.log($("#ind option[value=EH_HealthImpacts"));
 	$(".subind option[value='EH_HealthImpacts']").prop('selected', true);
 	
 	$("#subind").change(function(){
-		subindicator = $(this)[0].value;
+		subindicator = subindicators[$(this)[0].value];
 		drawSpark(sparkCountry);
 	});
 });
@@ -112,7 +107,6 @@ function drawRose(key, country) {
 	
 	var chart = roseCharts[key];
 	
-	//~ d3.json("http://localhost:3000/radar_chart.json?years[]=2012&"+url, function(error, json) {
 	d3.json("/radar_chart.json?years[]=2012&"+url, function(error, json) {
 		var country2 = json[0][0],
 			country = json[0][0].data;
@@ -122,7 +116,7 @@ function drawRose(key, country) {
 		var length = indLength(country.indicators);
 		var dat = [];
 		$.map(country.indicators, function(obj, i) {
-			var value = parseInt(obj.value);
+			var value = parseFloat(obj.value);
 			var y = value;
 			
 			if (value < 0 || obj.value == "NA")
@@ -336,8 +330,6 @@ function initLine(){
 function drawLine(key, country){
 	var x = 0;
     // JSON for line graph
-    //~ console.log(country);
-    //~ d3.json("http://localhost:3000/line_graph.json?indicator=" + indicator + "&iso_codes[]=" + country, function(error, json) {
     d3.json("/line_graph.json?indicator=" + indicator + "&iso_codes[]=" + country, function(error, json) {
 		var dat = [];
 		
@@ -366,21 +358,59 @@ function drawLine(key, country){
 }
 
 function drawSpark(country){
-	//~ d3.json("http://localhost:3000/indicator_trend.json?iso_codes[]=" + country + "&indicators[]=" + subindicator, function(error, json) {
-	d3.json("/indicator_trend.json?iso_codes[]=" + country + "&indicators[]=" + subindicator, function(error, json) {
+	d3.json("/indicator_trend.json?iso_codes[]=" + country + "&indicators[]=" + subindicator.id, function(error, json) {
 		if (! (sparkChart === undefined))
 			sparkChart.destroy();
 		
-		data = json[0][0].indicator_trend;
+		var data = json[0][0].indicator_trend;
+		
+		// Trim trailing NA's
+		var x = 0;
+		while(data[x].value == "NA") x++;
+		data.splice(0, x);
+		
+		// Trim ending NA's
+		x = data.length-1;
+		while(data[x].value == "NA") x--;
+		data.splice(x+1, data.length);
+		
 		var ser = [];
 		$.map(data, function(obj, i) {
 			var mark = false;
 			if (i == 0 || i == data.length-1) mark = true;
-			ser.push({x: parseInt(obj.year), y: parseFloat(obj.value), marker: {enabled: mark}});
+			var val = Math.round(parseFloat(obj.value)*100)/100;
+			if (isNaN(val)) val = null;
+			ser.push({x: parseInt(obj.year), y: val, marker: {enabled: mark}});
 		});
+		col = "#FF0000";
+		if (subindicator.id == "CHMORT")
+			col = "#ff9600";
+		else if (subindicator.id == "HAP" || subindicator.id == "PM25" || subindicator.id == "PM25EXBL")
+			col = "#f7c80b";
+		else if (subindicator.id == "WATSUP" || subindicator.id == "ACSAT")
+			col = "#ff6d24";
+		else if (subindicator.id == "WASTECXN")
+			col = "#7993f2";
+		else if (subindicator.id == "AGSUB" || subindicator.id == "POPS")
+			col = "#2e74ba";
+		else if (subindicator.id == "FORCH")
+			col = "#009bcc";
+		else if (subindicator.id == "TCEEZ" || subindicator.id == "FSOC")
+			col = "#008c8c";
+		else if (subindicator.id == "PACOVD" || subindicator.id == "PACOVW" || subindicator.id == "MPAEEZ" || subindicator.id == "AZE")
+			col = "#00ccaa";
+		else if (subindicator.id == "CO2GDPd1" || subindicator.id == "CO2GDPd2" || subindicator.id == "CO2KWH")
+			col = "#1cb85d";
+		
 		var spark = emptySpark(ser.length);
+		spark.plotOptions.line.dataLabels.style.color = col;
+		spark.xAxis.labels.style.color = col;
+		spark.title.text = subindicator.name;
+		spark.subtitle.text = subindicator.units;
+		console.log(subindicator.units.length);
 		sparkChart = new Highcharts.Chart(spark);
-		sparkChart.addSeries({name: country, data: ser, marker: {enabled: false}}, true);
+		sparkChart.addSeries({name: country, data: ser, marker: {enabled: false}, color: col}, true);
+		
 		sparkChart.redraw();
 		sparkCountry = country;
 	});
@@ -388,9 +418,36 @@ function drawSpark(country){
 
 function emptySpark(len){
 	var options = {
+		exporting: {
+			buttons: {
+				contextButton: {
+					enabled: false,
+					align: 'left'
+				}
+			}
+		},
 		chart: {
 			type: 'line',
 			renderTo: 'sparkChart'
+		},
+		title:{
+			align: 'left',
+			verticalAlign: 'top',
+			useHTML: true,
+			style: {
+				"fontSize": "10px"
+			},
+			floating: true
+		},
+		subtitle:{
+			align: 'right',
+			x: 12,
+			y: 8,
+			useHTML: true,
+			style: {
+				"fontSize": "10px"
+			},
+			floating: false
 		},
 		xAxis: {
 			lineWidth: 0,
@@ -400,7 +457,10 @@ function emptySpark(len){
 			tickInterval: 1,
 			labels:{
 				step: len-1,
-				staggerLines: 1
+				staggerLines: 1,
+				style: {
+					fontWeight: 'bold'
+				}
 			}
 		},
 		yAxis: {
@@ -414,9 +474,6 @@ function emptySpark(len){
 			}
 		},
 		series: [],
-		title: {
-			text: ''
-		},
 		credits: {
 			enabled: false
 		},
@@ -430,15 +487,23 @@ function emptySpark(len){
 		},
 		plotOptions: {
 			line: {
+				//~ connectNulls: true,
 				dataLabels: {
 					enabled: true,
-					y: 23,
+					align: 'center',
+					crop: false,
+					overflow: 'none',
+					verticalAlign: 'bottom',
+					y: -5,
 					formatter: function() {
 						var data = sparkChart.series[0].data;
 						if(this.point.x == data[0].x || this.point.x == data[data.length-1].x) // Only label first and last 
 							// This is an ugly hack to have a double white space between year and data
-							return this.y;
+							return this.point.y || '0.00';
 						return ''
+					},
+					style: {
+						fontWeight: 'bold'
 					}
 				}
 			}

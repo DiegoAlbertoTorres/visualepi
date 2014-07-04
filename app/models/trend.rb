@@ -67,12 +67,25 @@ class Trend < ActiveRecord::Base
 	end
 	
 	def self.subindicator_list
-	["CHMORT"=>"Child Mortality", "HAP"=>"Household Air Quality", "PM25"=>"Air Pollution - Average Exposure to PM2.5",
-	"PM25EXBL"=>"Air Pollution - PM2.5 Exceedance", "WATSUP"=>"Access to Drinking Water", "ACSAT"=>"Access to Sanitation",
-	"WASTECXN"=>"Wastewater Treatment", "AGSUB"=>"Agricultural Subsidies", "POPS"=>"Pesticide Regulation", 
-	"FORCH"=>"Change in Forest Cover", "TCEEZ"=>"Coastal Shelf Fishing Pressure", "FSOC"=>"Fish Stocks", 
-	"PACOVD"=>"Terrestrial Protected Areas (National Biome Weights)", "PACOVW"=>"Terrestrial Protected Areas (Global Biome Weights)",
-	"MPAEEZ"=>"Marine Protected Areas", "AZE"=>"Critical Habitat Protection", "CO2GDPd1"=>"Trend in Carbon Intensity",
-	"CO2GDPd2"=>"Change of Trend in Carbon Intensity", "ACCESS"=>"Access to Electricity", "CO2KWH"=>"Trend in CO2 Emissions per KWH"]
+ 	[{"name"=>"Child Mortality", "id"=>"CHMORT", "units"=> "Probability", "shortunits"=>""},
+ 	{"name"=>"Household Air Quality", "id"=>"HAP", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Air Pollution - Average Exposure to PM2.5", "id"=>"PM25", "units"=> "Micrograms/m^3", "shortunits"=>"mg/m^3"},
+	{"name"=>"Air Pollution - PM2.5 Exceedance", "id"=>"PM25EXBL", "units"=> "Proportion", "shortunits"=>""},
+	{"name"=>"Access to Drinking Water", "id"=>"WATSUP", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Access to Sanitation", "id"=>"ACSAT", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Wastewater Treatment", "id"=>"WASTECXN", "units"=> "Percentage (treatment level x connection rate)", "shortunits"=>"%"},
+	{"name"=>"Agricultural Subsidies", "id"=>"AGSUB", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Pesticide Regulation", "id"=>"POPS", "units"=> "(Out of 25 points)", "shortunits"=>""},
+	{"name"=>"Change in Forest Cover", "id"=>"FORCH", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Coastal Shelf Fishing Pressure", "id"=>"TCEEZ", "units"=> "Proportion", "shortunits"=>""},
+	{"name"=>"Fish Stocks", "id"=>"FSOC", "units"=> "Proportion", "shortunits"=>""},
+	{"name"=>"Terrestrial Protected Areas (National Biome Weights)", "id"=>"PACOVD", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Terrestrial Protected Areas (Global Biome Weights)", "id"=>"PACOVW", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Marine Protected Areas", "id"=>"MPAEEZ", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Critical Habitat Protection", "id"=>"AZE", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Trend in Carbon Intensity", "id"=>"CO2GDPd1", "units"=> "Unitless", "shortunits"=>""},
+	{"name"=>"Change of Trend in Carbon Intensity", "id"=>"CO2GDPd2", "units"=> "Unitless", "shortunits"=>""},
+	{"name"=>"Access to Electricity", "id"=>"ACCESS", "units"=> "Percentage", "shortunits"=>"%"},
+	{"name"=>"Trend in CO2 Emissions per KWH", "id"=>"CO2KWH", "units"=> "Unitless", "shortunits"=>""}]
 	end
 end

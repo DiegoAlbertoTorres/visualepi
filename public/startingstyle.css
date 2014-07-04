@@ -67,7 +67,7 @@ h1{
 
 #sparkChart{
 	width: 280px;
-	height: 150px;
+	height: 100px;
 }
 
 .clist{
@@ -77,4 +77,16 @@ h1{
 .sel-title{
 	width: 33%;
 	float: left;
+}
+/* This should not be necessary, I do not know why Highcharts refuses
+ * to accept simply setting spark.title.align: left; */
+.highcharts-title{
+/*
+	white-space: normal !important;
+*/
+	width: 180px;
+}
+.highcharts-subtitle{
+	white-space: normal !important;
+	width: 60px;
 }
