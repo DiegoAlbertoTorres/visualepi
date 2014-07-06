@@ -86,6 +86,6 @@ class Trend < ActiveRecord::Base
 	{"name"=>"Trend in Carbon Intensity", "id"=>"CO2GDPd1", "units"=> "Unitless", "shortunits"=>""},
 	{"name"=>"Change of Trend in Carbon Intensity", "id"=>"CO2GDPd2", "units"=> "Unitless", "shortunits"=>""},
 	{"name"=>"Access to Electricity", "id"=>"ACCESS", "units"=> "Percentage", "shortunits"=>"%"},
-	{"name"=>"Trend in CO2 Emissions per KWH", "id"=>"CO2KWH", "units"=> "Unitless", "shortunits"=>""}]
+	{"name"=>"Trend in CO2 Emissions per kWH", "id"=>"CO2KWH", "units"=> "Unitless", "shortunits"=>""}]
 	end
 end

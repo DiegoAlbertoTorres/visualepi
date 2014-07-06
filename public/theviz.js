@@ -82,6 +82,8 @@ d3.json("/subindicator_list.json", function(error, json) {
 			subindicator.id = "CO2GDPd1";
 			co2gdpd2 = true;
 		}
+		else
+			co2gdpd2 = false;
 		//~ if (subindicator.shortunits == "Microg/m^3") subindicator.shortunits = '\x';
 		drawSpark(sparkCountry);
 	});
@@ -445,8 +447,6 @@ function drawSpark(country){
 			
 			var firstPt2 = (lm2.m * ser[0].x) + lm2.b;
 			var secondPt2 = (lm2.m * ser[9].x) + lm2.b;
-			
-			console.log(ser[20]);
 			
 			var dat1 = [{x: ser[0].x, y: firstPt1}, {x: ser[10].x, y: secondPt1}];
 			var dat2 = [{x: ser[10].x, y: firstPt2}, {x: ser[20].x, y: secondPt2}];
