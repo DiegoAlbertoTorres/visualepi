@@ -359,21 +359,22 @@ function drawLine(key, country){
 }
 
 function drawSpark(country){
-	subindicatorid = (subindicator.id == "CO2GDPd2") ? "CO2GDPd1" : subindicator.id
+	subindicatorid = (subindicator.id == "CO2GDPd2") ? "CO2GDPd1" : subindicator.id;
 	d3.json("/indicator_trend.json?iso_codes[]=" + country + "&indicators[]=" + subindicatorid, function(error, json) {
 		if (! (sparkChart === undefined))
 			sparkChart.destroy();
-		
 		var data = json[0][0].indicator_trend;
+		
+		sparkCountry = country;
 		
 		// Trim trailing NA's
 		var x = 0;
-		while(data[x].value == "NA") x++;
+		while(data[x] != null && data[x].value == "NA") x++;
 		data.splice(0, x);
 		
 		// Trim ending NA's
 		x = data.length-1;
-		while(data[x].value == "NA") x--;
+		while(x > 0 && data[x].value == "NA") x--;
 		data.splice(x+1, data.length);
 		
 		var ser = [];
@@ -416,8 +417,8 @@ function drawSpark(country){
 		// Labels only on first and last, except for CO2GDPd2
 		if (subindicator.id == "CO2GDPd2")
 			spark.xAxis.labels.step = 10;
-		else
-			spark.xAxis.labels.step = ser[ser.length-1].x - ser[0].x;
+		else if (ser.length != 0)
+			spark.xAxis.labels.step = ser[ser.length - 1].x - ser[0].x;
 			
 		spark.subtitle.text = subindicator.units;
 		
@@ -428,6 +429,16 @@ function drawSpark(country){
 		sparkChart = new Highcharts.Chart(spark);
 		
 		// Add the main data series
+		if (ser.length == 0){
+			var span = '<p id="pieChartInfoText" style="z-index: 5"> No data available. </p>';
+
+			$("#sparkChart").append(span);
+			span = $('#pieChartInfoText');
+			span.css('left', 80);
+			span.css('top', -50);
+			span.css('position', 'relative');
+			return;
+		}
 		sparkChart.addSeries({name: country, data: ser, marker: {enabled: false}, color: col}, true);
 		
 		// Add trends to indicators that need them
@@ -471,7 +482,6 @@ function drawSpark(country){
 		}
 		
 		sparkChart.redraw();
-		sparkCountry = country;
 	});
 }
 
