@@ -69,7 +69,7 @@ class Trend < ActiveRecord::Base
 	def self.subindicator_list
  	[{"name"=>"Child Mortality", "id"=>"CHMORT", "units"=> "Probability", "shortunits"=>""},
  	{"name"=>"Household Air Quality", "id"=>"HAP", "units"=> "Percentage", "shortunits"=>"%"},
-	{"name"=>"Air Pollution - Average Exposure to PM2.5", "id"=>"PM25", "units"=> "Micrograms/m^3", "shortunits"=>"mg/m^3"},
+	{"name"=>"Air Pollution - Average Exposure to PM2.5", "id"=>"PM25", "units"=> "Micrograms/m^3", "shortunits"=>"Microg/m^3"},
 	{"name"=>"Air Pollution - PM2.5 Exceedance", "id"=>"PM25EXBL", "units"=> "Proportion", "shortunits"=>""},
 	{"name"=>"Access to Drinking Water", "id"=>"WATSUP", "units"=> "Percentage", "shortunits"=>"%"},
 	{"name"=>"Access to Sanitation", "id"=>"ACSAT", "units"=> "Percentage", "shortunits"=>"%"},

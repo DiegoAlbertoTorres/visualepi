@@ -20,6 +20,7 @@ var sparkChart;
 var sparkCountry ="CHN";
 var indicator = "EH_HealthImpacts";
 var subindicator = {name: "Child Mortality", id: "CHMORT", units: "Probability", shortunits: ""};
+var co2gdpd2 = false;
 
 // JSON for select Boxes 
 d3.json("/country_list.json", function(error, json) {  
@@ -68,7 +69,6 @@ d3.json("/subindicator_list.json", function(error, json) {
 	var subindhtml = "";
 	var subindicators = json;
 	$.each(subindicators, function(i, obj){
-		if (obj.id == "CO2GDPd2") return;
 		subindhtml += "<option value=" + i +">" + obj.name +"</option>"
 	});
 	$(".subind").append("<select id='subind'>" + subindhtml + "</select>");
@@ -77,7 +77,12 @@ d3.json("/subindicator_list.json", function(error, json) {
 	$("#subind").change(function(){
 		subindicator = subindicators[$(this)[0].value];
 		// This is the only way to handle the superscript using SVG subtitle and tooltip.
-		if (subindicator.shortunits == "mg/m^3") subindicator.shortunits = "mg/m\xB3";
+		if (subindicator.shortunits == "Microg/m^3") subindicator.shortunits = "\xB5g/m\xB3";
+		if (subindicator.id == "CO2GDPd2"){ 
+			subindicator.id = "CO2GDPd1";
+			co2gdpd2 = true;
+		}
+		//~ if (subindicator.shortunits == "Microg/m^3") subindicator.shortunits = '\x';
 		drawSpark(sparkCountry);
 	});
 });
@@ -384,6 +389,7 @@ function drawSpark(country){
 			if (isNaN(val)) val = null;
 			ser.push({x: parseInt(obj.year), y: val, marker: {enabled: mark}});
 		});
+		
 		col = "#FF0000";
 		if (subindicator.id == "CHMORT")
 			col = "#ff9600";
@@ -402,16 +408,74 @@ function drawSpark(country){
 		else if (subindicator.id == "PACOVD" || subindicator.id == "PACOVW" || subindicator.id == "MPAEEZ" || subindicator.id == "AZE")
 			col = "#00ccaa";
 		else if (subindicator.id == "CO2GDPd1" || subindicator.id == "CO2GDPd2" || subindicator.id == "CO2KWH")
+			col = "#444444";
+		else if ("ACCESS")
 			col = "#1cb85d";
 		
 		var spark = emptySpark(ser.length);
+		
+		// Set colors of data albels and axis ticks
 		spark.plotOptions.line.dataLabels.style.color = col;
 		spark.xAxis.labels.style.color = col;
-		spark.xAxis.labels.step = ser[ser.length-1].x - ser[0].x;
+		
+		// Labels only on first and last, except for CO2GDPd2
+		if (co2gdpd2)
+			spark.xAxis.labels.step = 10;
+		else
+			spark.xAxis.labels.step = ser[ser.length-1].x - ser[0].x;
+			
 		spark.subtitle.text = subindicator.units;
-		if (subindicator.units.length > 13) spark.subtitle.text = subindicator.shortunits;
+		
+		// Space is limited for subtitle
+		if (subindicator.units.length > 13) 
+			spark.subtitle.text = subindicator.shortunits;
+		
 		sparkChart = new Highcharts.Chart(spark);
+		
+		// Add the main data series
 		sparkChart.addSeries({name: country, data: ser, marker: {enabled: false}, color: col}, true);
+		
+		// Add trends to indicators that need them
+		if (co2gdpd2){
+			var lm1 = linearReg(ser.slice(0,11));
+			var lm2 = linearReg(ser.slice(11, 21));
+			
+			var firstPt1 = (lm1.m * ser[0].x) + lm1.b;
+			var secondPt1 = (lm1.m * ser[10].x) + lm1.b;
+			
+			var firstPt2 = (lm2.m * ser[0].x) + lm2.b;
+			var secondPt2 = (lm2.m * ser[9].x) + lm2.b;
+			
+			console.log(ser[20]);
+			
+			var dat1 = [{x: ser[0].x, y: firstPt1}, {x: ser[10].x, y: secondPt1}];
+			var dat2 = [{x: ser[10].x, y: firstPt2}, {x: ser[20].x, y: secondPt2}];
+			
+			sparkChart.addSeries({ 
+				data: dat1, marker: {enabled: false}, 
+				dataLabels: {enabled: false}, 
+				color: '#1cb85d',
+				enableMouseTracking: false,
+			}, true);
+			sparkChart.addSeries({ 
+				data: dat2, marker: {enabled: false}, 
+				dataLabels: {enabled: false}, 
+				color: '#1cb85d',
+				enableMouseTracking: false,
+			}, true);
+		}
+		else if (subindicator.id == "CO2GDPd1" || subindicator.id == "CO2KWH"){
+			var lm = linearReg(ser);
+			var firstPt = (lm.m * ser[0].x) + lm.b;
+			var secondPt = (lm.m * ser[ser.length - 1].x) + lm.b;
+			var dat = [{x: ser[0].x, y: firstPt}, {x: ser[ser.length - 1].x, y: secondPt}];
+			sparkChart.addSeries({
+				data: dat, marker: {enabled: false}, 
+				dataLabels: {enabled: false}, 
+				color: '#1cb85d',
+				enableMouseTracking: false,
+			}, true);
+		}
 		
 		sparkChart.redraw();
 		sparkCountry = country;
@@ -597,3 +661,37 @@ function indLength(indicators){
 
 } //ends mega meta wrapper function
 )};
+
+// Regression result is y = mx + b.
+function linearReg(data){
+	var len = data.length;
+	var dataX = [];
+	var dataY = [];
+	
+	for(i = 0; i < len; i++){
+		dataX.push(data[i].x);
+		dataY.push(data[i].y);
+	}
+	
+	var dataXY = [];
+	var dataXX = [];
+	for(i = 0; i < len; i++){
+		dataXY.push(dataX[i]*dataY[i])
+		dataXX.push(dataX[i]*dataX[i])
+	}
+		
+	var sumX = dataX.reduce(function(a, b) { return a + b });
+	var sumY = dataY.reduce(function(a, b) { return a + b });
+	var sumXY = dataXY.reduce(function(a, b) { return a + b });
+	var sumXX = dataXX.reduce(function(a, b) { return a + b });
+	
+	var avgX = sumX / len;
+	var avgY = sumY / len;
+	var avgXY = sumXY / len;
+	var avgXX = sumXX / len;
+	
+	var m = (avgXY - (avgX * avgY)) / (avgXX - Math.pow(avgX, 2));
+	var b = (avgY - (m * avgX));
+	
+	return {m:m, b:b};
+}
