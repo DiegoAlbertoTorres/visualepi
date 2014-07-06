@@ -20,7 +20,6 @@ var sparkChart;
 var sparkCountry ="CHN";
 var indicator = "EH_HealthImpacts";
 var subindicator = {name: "Child Mortality", id: "CHMORT", units: "Probability", shortunits: ""};
-var co2gdpd2 = false;
 
 // JSON for select Boxes 
 d3.json("/country_list.json", function(error, json) {  
@@ -78,12 +77,6 @@ d3.json("/subindicator_list.json", function(error, json) {
 		subindicator = subindicators[$(this)[0].value];
 		// This is the only way to handle the superscript using SVG subtitle and tooltip.
 		if (subindicator.shortunits == "Microg/m^3") subindicator.shortunits = "\xB5g/m\xB3";
-		if (subindicator.id == "CO2GDPd2"){ 
-			subindicator.id = "CO2GDPd1";
-			co2gdpd2 = true;
-		}
-		else
-			co2gdpd2 = false;
 		drawSpark(sparkCountry);
 	});
 });
@@ -366,7 +359,8 @@ function drawLine(key, country){
 }
 
 function drawSpark(country){
-	d3.json("/indicator_trend.json?iso_codes[]=" + country + "&indicators[]=" + subindicator.id, function(error, json) {
+	subindicatorid = (subindicator.id == "CO2GDPd2") ? "CO2GDPd1" : subindicator.id
+	d3.json("/indicator_trend.json?iso_codes[]=" + country + "&indicators[]=" + subindicatorid, function(error, json) {
 		if (! (sparkChart === undefined))
 			sparkChart.destroy();
 		
@@ -420,7 +414,7 @@ function drawSpark(country){
 		spark.xAxis.labels.style.color = col;
 		
 		// Labels only on first and last, except for CO2GDPd2
-		if (co2gdpd2)
+		if (subindicator.id == "CO2GDPd2")
 			spark.xAxis.labels.step = 10;
 		else
 			spark.xAxis.labels.step = ser[ser.length-1].x - ser[0].x;
@@ -437,7 +431,7 @@ function drawSpark(country){
 		sparkChart.addSeries({name: country, data: ser, marker: {enabled: false}, color: col}, true);
 		
 		// Add trends to indicators that need them
-		if (co2gdpd2){
+		if (subindicator.id == "CO2GDPd2") {
 			var lm1 = linearReg(ser.slice(0,11));
 			var lm2 = linearReg(ser.slice(11, 21));
 			
