@@ -84,7 +84,6 @@ d3.json("/subindicator_list.json", function(error, json) {
 		}
 		else
 			co2gdpd2 = false;
-		//~ if (subindicator.shortunits == "Microg/m^3") subindicator.shortunits = '\x';
 		drawSpark(sparkCountry);
 	});
 });
